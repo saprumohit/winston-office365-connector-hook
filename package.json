@@ -29,12 +29,13 @@
   },
   "homepage": "https://github.com/SukantGujar/winston-office365-connector-hook#readme",
   "devDependencies": {
-    "winston": "^2.3.1"
+    "winston": "^3.8.2"
   },
   "peerDependencies": {
-    "winston": "^2.3.1"
+    "winston": "^3.8.2"
   },
   "dependencies": {
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "winston-transport": "^4.5.0"
   }
 }
