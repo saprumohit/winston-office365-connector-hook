@@ -35,7 +35,7 @@
     "winston": "^3.8.2"
   },
   "dependencies": {
-    "request": "^2.81.0",
+    "axios": "^1.7.7",
     "winston-transport": "^4.5.0"
   }
 }
