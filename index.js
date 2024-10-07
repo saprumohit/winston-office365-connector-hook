@@ -1,6 +1,6 @@
 var util = require('util'),
     queue = require('./queue'),
-    request = require('request'),
+    axios = require('axios'),
     winston = require('winston'),
     webColors = {
         "black": "000",
@@ -82,19 +82,16 @@ ensureCallback = function (cb1, cb2) {
 deferredExecute = function (url, payload, callback) {
     return function (cb) {
         var safeCallback = ensureCallback(callback, cb);
-        request
-            .post(url)
-            .json(payload)
-            .on('response', function (response) {
-                if (response.statusCode === 200) {
-                    safeCallback(null, true);
-                    return;
-                }
-
-                safeCallback('Server responded with ' + response.statusCode);
+        axios.post(url, payload)
+            .then(response => {
+            if (response.status === 200) {
+                safeCallback(null, true);
+            } else {
+                safeCallback('Server responded with ' + response.status);
+            }
             })
-            .on('error', function (error) {
-                safeCallback(error);
+            .catch(error => {
+            safeCallback(error);
             });
     }
 }
